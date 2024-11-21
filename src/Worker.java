@@ -19,6 +19,16 @@ public class Worker {
         this.salary = salary;
     }
 
+    public Worker(String ID, String firstName, String lastName, String email, String phoneNumber, String address, int salary){
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.salary = salary;
+    }
+
     @Override
     public boolean equals(Object o){
         if (o == null)

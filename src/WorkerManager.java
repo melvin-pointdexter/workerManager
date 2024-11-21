@@ -12,6 +12,14 @@ public class WorkerManager {
         this.workers = workerCreator(10000);
     }
 
+    public Worker[] getWorkers(){ return workers; }
+
+    public int getWorkerCount() { return workers.length; }
+
+    public void sort(){
+        //TODO
+    }
+
     public static Worker[] workerCreator(final int workerCounter){
         Worker[] newWorkers = new Worker[workerCounter];
         Random rng = new Random();
