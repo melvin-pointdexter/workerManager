@@ -37,7 +37,7 @@ public class WorkerManagerTest {
         Worker[] workers = manager.getWorkers();
 
         for (int i = 1; i < workers.length; i++){
-            if (workers[i-1] != workers[i])
+            if (workers[i-1].getSalary() > workers[i].getSalary())
                 Assert.fail();
         }
         Assert.assertEquals(workers.length, 1000);

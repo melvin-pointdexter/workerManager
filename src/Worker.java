@@ -29,6 +29,8 @@ public class Worker {
         this.salary = salary;
     }
 
+    public int getSalary() { return this.salary; }
+
     @Override
     public boolean equals(Object o){
         if (o == null)
@@ -41,4 +43,8 @@ public class Worker {
         return this.ID.equals(otherWorker.ID);
     }
 
+    @Override
+    public String toString(){
+        return String.format("Worker %s %s #%s, works from %s with contacts %s %s receives salary %d", this.firstName, this.lastName, this.ID, this.address, this.phoneNumber, this.email, this.salary);
+    }
 }

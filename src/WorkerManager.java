@@ -17,7 +17,30 @@ public class WorkerManager {
     public int getWorkerCount() { return workers.length; }
 
     public void sort(){
-        //TODO
+        long timeBeforeSort = System.currentTimeMillis();
+
+        for (int curCycle = 0; curCycle < workers.length; curCycle++){
+            for (int curWorker = 0; curWorker < workers.length - 1; curWorker++){
+                if (workers[curWorker].getSalary() > workers[curWorker + 1].getSalary()) {
+                    Worker workerHolder = workers[curWorker];
+                    workers[curWorker] = workers[curWorker + 1];
+                    workers[curWorker + 1] = workerHolder;
+                }
+            }
+        }
+
+        long timeAfterSort = System.currentTimeMillis();
+        System.out.printf("The time it took to sort is %d, i.e. %.3f seconds\n", (timeAfterSort - timeBeforeSort), ((float)(timeAfterSort - timeBeforeSort))/1000.0);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder workersText = new StringBuilder();
+        for (int curWorker = 0; curWorker < workers.length - 1; curWorker++){
+            workersText.append(workers[curWorker]);
+            workersText.append("\n");
+        }
+        return workersText.toString();
     }
 
     public static Worker[] workerCreator(final int workerCounter){
