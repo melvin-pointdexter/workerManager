@@ -91,9 +91,9 @@ public class WorkerManager {
 
     public static Worker[] workerCreator(final int workerCounter){
         Worker[] newWorkers = new Worker[workerCounter];
-        Random rng = new Random();
+        Random rnd = new Random();
         for (int i = 0; i < workerCounter; i++){
-            int salary = 3000 + rng.nextInt(12000);
+            int salary = 15000 + rnd.nextInt(30000) + 1;
             newWorkers[i] = new Worker("John", "Doe", "John.Doe@yahoo.com", "051-234-5678", "308 Negra Arroyo Lane", salary);
         }
         return newWorkers;

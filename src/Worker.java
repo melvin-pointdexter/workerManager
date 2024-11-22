@@ -1,7 +1,7 @@
 public class Worker {
 
-    static int currentWorkerID = 1;
-    private String ID;
+    static int currentWorkerID = 100000000;
+    private final String ID;
     private String firstName;
     private String lastName;
     private String email;
