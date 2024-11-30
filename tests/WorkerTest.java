@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class WorkerManagerTest {
+public class WorkerTest {
 
     public Worker[] getSampleWorkers(){
         Worker[] workers = {new Worker("AAA","John", "Doe", "John.Doe@yahoo.com", "051-234-5678", "308 Negra Arroyo Lane", 9000),
@@ -21,35 +21,59 @@ public class WorkerManagerTest {
 
     @Test
     public void SortIsSortedFew(){
-        WorkerManager manager = new WorkerManager(getSampleWorkers());
+        Worker[] workers = getSampleWorkers();
 
-        manager.sort();
+        Worker[] sortedWorkers = Worker.sort(workers);
 
-        Assert.assertArrayEquals(manager.getWorkers(), getSampleWorkersSorted());
+        Assert.assertArrayEquals(sortedWorkers, getSampleWorkersSorted());
     }
 
     @Test
     public void SortIsSortedMany(){
-        WorkerManager manager = new WorkerManager(WorkerManager.workerCreator(1000));
+        Worker[] workers = Worker.workerCreator(1000);
 
-        manager.sort();
-
-        Worker[] workers = manager.getWorkers();
+        Worker[] sortedWorkers = Worker.sort(workers);
 
         for (int i = 1; i < workers.length; i++){
-            if (workers[i-1].getSalary() > workers[i].getSalary())
+            if (sortedWorkers[i-1].getSalary() > sortedWorkers[i].getSalary())
                 Assert.fail();
         }
-        Assert.assertEquals(workers.length, 1000);
+        Assert.assertEquals(1000, workers.length);
     }
 
     @Test
     public void SortNoMissing(){
-        //TODO
+        Worker[] workers = Worker.workerCreator(1000);
+
+        Worker[] sortedWorkers = Worker.sort(workers);
+
+        for (int i = 0; i < workers.length; i++){
+            boolean exists = false;
+
+            for (int j = 0; j < sortedWorkers.length; j++)
+                exists |= workers[i].equals(sortedWorkers[j]);
+
+            if (!exists)
+                Assert.fail("There is a worker missing");
+        }
+        Assert.assertEquals(1000, workers.length);
     }
 
     @Test
     public void SortNoDuplicate(){
-        //TODO
+        Worker[] workers = Worker.workerCreator(1000);
+
+        Worker[] sortedWorkers = Worker.sort(workers);
+
+        for (int i = 0; i < workers.length; i++){
+            int workerCount = 0;
+
+            for (int j = 0; j < sortedWorkers.length; j++)
+                workerCount += (workers[i].equals(sortedWorkers[j])) ? 1 : 0;
+
+            if (workerCount > 1)
+                Assert.fail("The same worker appears more than once");
+        }
+        Assert.assertEquals(1000, workers.length);
     }
 }

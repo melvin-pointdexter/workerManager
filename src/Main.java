@@ -1,10 +1,16 @@
 public class Main {
 
     public static void main(String[] args) {
-        WorkerManager manager = new WorkerManager(WorkerManager.workerCreator(10000));
+        Worker[] workers = Worker.workerCreator(10000);
+        Worker[] sortedWorkers = Worker.sort(workers);
 
-        //System.out.println("====================================\nThe workers before the sorting:\n" + manager);
-        manager.sort();
-        //System.out.println("====================================\nThe workers after the sorting:\n" + manager );
+        System.out.printf("Workers after sorting:");
+        printWorkers(sortedWorkers);
+    }
+
+    public static void printWorkers(Worker[] workers){
+        for (Worker worker : workers) {
+            System.out.println(worker.toString());
+        }
     }
 }
